@@ -2,10 +2,14 @@
 
 MySQL database of a reservation system with the functionality a company like Airbnb would require.
 
+![ER Model](https://github.com/mohamadsolouki/airbnb-datamart/blob/main/01-Concept/Final%20ERM.png)
+
+
 
 ## Schema details
 
 In the following picture, the details of the schema have been shown. Using the “SHOW TABLE STATUS FROM db” query, I extract the schema information in a .csv file which is available in the finalization directory.
+
 ![schema details](https://github.com/mohamadsolouki/airbnb-datamart/blob/main/03-Finalisation/metadata.jpg)
 
 
