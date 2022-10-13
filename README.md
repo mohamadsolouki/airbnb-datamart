@@ -6,7 +6,7 @@ MySQL database of a reservation system with the functionality a company like Air
 ## Schema details
 
 In the following picture, the details of the schema have been shown. Using the “SHOW TABLE STATUS FROM db” query, I extract the schema information in a .csv file which is available in the finalization directory.
-https://github.com/mohamadsolouki/airbnb-datamart/blob/main/03-Finalisation/metadata.jpg
+![schema details](https://github.com/mohamadsolouki/airbnb-datamart/blob/main/03-Finalisation/metadata.jpg)
 
 
 ## Installation
