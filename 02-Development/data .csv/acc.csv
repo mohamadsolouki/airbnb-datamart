@@ -1,0 +1,14 @@
+id,feature_name,feature_desc
+1,"Step-free guest entrance","Guest entrance and parking"
+2,"Guest entrance wider than 32 inches","Guest entrance and parking"
+3,"Accessible parking spot","Guest entrance and parking"
+4,"Step-free path to the guest entrance","Guest entrance and parking"
+5,"Step-free bedroom access",Bedroom
+6,"Bedroom entrance wider than 32 inches",Bedroom
+7,"Step-free bathroom access",Bathroom
+8,"Bathroom entrance wider than 32 inches",Bathroom
+9,"Shower grab bar",Bathroom
+10,"Toilet grab bar",Bathroom
+11,"Step-free shower",Bathroom
+12,"Shower or bath chair",Bathroom
+13,"Ceiling or mobile hoist","Adaptive equipment"

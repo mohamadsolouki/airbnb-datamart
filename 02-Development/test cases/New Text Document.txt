@@ -1,0 +1,187 @@
+address
+
+SELECT a.id AS 'Address ID', r.region_name AS 'Region', co.name AS 'Country',
+ s.name AS 'State', ci.name AS 'City', a.street_address AS 'Address',
+ a.zip AS 'Zip code', a.latitude AS' Latitude', a.longitude AS 'Longitude' FROM 
+address AS a
+JOIN region AS r ON a.region_id = r.id
+JOIN country AS co ON a.country_id = co.id
+JOIN state AS s ON a.state_id = s.id
+JOIN city AS ci ON a.city_id = ci.id
+LIMIT 10;
+
+
+
+user 
+
+SELECT u.id AS 'User ID', ut.type_name AS 'User type', first_name AS 'First name', 
+last_name AS 'Last name', email AS 'E-mail', DOB AS 'Date of Birth' 
+FROM db.user AS u JOIN db.user_type AS ut
+ON u.user_type = ut.id
+WHERE user_type = 1 ORDER BY DOB ASC;
+
+
+
+host
+
+SELECT id AS 'User ID', bank_account AS 'IBAN' 
+FROM db.host ORDER BY id;
+
+
+
+language
+SELECT * FROM db.language 
+ORDER BY language_name ASC
+LIMIT 20;
+
+
+
+host_language
+
+SELECT hl.host_id AS 'Host ID', l.language_name
+FROM db.host_language AS hl
+JOIN db.language AS l
+ON hl.language_id = l.id
+WHERE host_id >= 20 order by host_id;
+
+
+
+property amenity
+
+SELECT p.property_id AS 'Property ID',
+a.name AS 'Amenity name'
+FROM db.property_amenities AS p
+JOIN db.amenity AS a 
+ON p.amenity_id = a.id
+WHERE p.property_id = 2;
+
+
+
+
+property_accessibility
+
+SELECT p.property_id AS 'Property ID',
+a.feature_name AS 'Feature name'
+FROM db.property_accessibility AS p
+JOIN db.accessibility AS a 
+ON p.accessibility_id = a.id
+WHERE p.property_id = 9;
+
+SELECT COUNT(p.property_id) AS 'Number of properties',
+a.feature_name
+FROM db.property_accessibility AS p
+JOIN db.accessibility AS a 
+ON p.accessibility_id = a.id
+WHERE a.id = 1;
+
+
+
+image
+
+SELECT i.property_id AS 'Property ID', CONCAT(u.first_name, ' ' ,u.last_name) AS 'Uploaded by',
+i.image_name AS 'Image title', i.file_location AS 'URL', i.created_at 'Uploaded at' 
+FROM db.image AS i JOIN db.user AS u ON i.by_user = u.id
+ORDER BY property_id LIMIT 20;
+
+
+
+property
+
+SELECT p.id AS 'Property ID', p.address_id AS 'Address ID', owner_id AS 'Host ID', 
+pt.type_name AS 'Property type', plt.type_name AS 'Plcae type', bed_count AS 'No. Beds', 
+bedroom_count AS 'No. Bedrooms', bathroom_count AS 'No. Bathrooms', current_price AS 'Price', 
+availabality AS 'Is available' FROM db.property AS p
+JOIN db.property_type AS pt ON p.property_type_id = pt.id
+JOIN db.place_type AS plt ON p.place_type_id = plt.id
+WHERE p.availabality = 1 ORDER BY p.id;
+
+
+
+review
+
+SELECT r.id AS 'Review ID', CONCAT(u.first_name, ' ' ,u.last_name) AS 'Review by',
+r.booking_id AS 'Booking ID', r.rating AS 'Rating', r.review_body AS 'Text'
+FROM db.review AS r JOIN db.user AS u
+ON r.review_by_user = u.id
+WHERE r.review_status = 1
+ORDER BY r.booking_id;
+
+
+
+booking
+
+SELECT b.id AS 'Booking ID', CONCAT(u.first_name, ' ' ,u.last_name) AS 'Guest name',
+DATEDIFF(b.check_out,b.check_in) AS 'No. of nights', b.price_per_night AS 'Price per night',  
+(b.price_per_night * DATEDIFF(b.check_out,b.check_in)) AS 'Total price',
+b.adult_num AS 'No. of adults', b.child_num AS 'No. of guests', b.created_at AS 'Reserved in'
+FROM db.booking AS b JOIN db.user AS u
+ON b.guest_id = u.id LIMIT 20;
+
+
+
+promo
+
+SELECT title AS 'Promo title', discount AS 'Discount percent',
+code AS 'Promo Code', promo_status AS 'Code status'
+FROM db.promo 
+WHERE promo_status = 1 AND discount>30 ORDER BY discount;
+
+
+
+transaction
+
+SELECT t.id AS 'Tx ID', t.booking_id AS 'Booking ID', p.code AS 'Promo code', t.tax AS 'Tax', 
+t.service_fee AS 'Fee', (b.price_per_night * DATEDIFF(b.check_out,b.check_in)) AS 'Booking price', 
+t.total_price AS 'Total price', t.transaction_status AS 'Tx status', 
+t.is_refund AS 'Refund status', t.transfer_on AS 'Tx time'
+FROM db.transaction AS t JOIN db.booking AS b ON t.booking_id = b.id 
+LEFT JOIN db.promo AS p ON t.promo_id = p.id ORDER BY t.transfer_on DESC LIMIT 20;
+
+
+
+subselect
+
+SELECT CONCAT(u.first_name, ' ' ,u.last_name) AS 'Guest name', p.owner_id AS 'Host ID', 
+subs.tax AS 'Tax', subs.service_fee AS 'Service fee', subs.Booking_price AS 'Booking price', 
+subs.total_price AS 'Total price' FROM (
+SELECT t.booking_id, b.guest_id, b.property_id, t.tax,
+t.service_fee, (b.price_per_night * DATEDIFF(b.check_out,b.check_in)) AS 'booking_price', 
+t.total_price, t.is_refund
+FROM db.transaction AS t JOIN db.booking AS b ON t.booking_id = b.id 
+LEFT JOIN db.promo AS p ON t.promo_id = p.id 
+WHERE t.is_refund = 1 ) AS subs
+JOIN db.user AS u ON u.id = subs.guest_id
+JOIN db.property AS p ON p.id = subs.property_id;
+
+
+
+CASE statement
+
+SELECT id AS 'Property ID', current_price AS 'Property price',
+CASE
+	WHEN current_price > 300 THEN 'Expensive'
+    WHEN current_price > 100 THEN 'Affordable'
+    ELSE 'Cheap'
+END AS 'Price'
+FROM db.property WHERE availabality = 1;
+
+
+
+
+propaddress view
+
+SELECT ssv.Host, ssv.type_name AS 'Place_type', ssv.Property_type, co.name AS 'Country', ci.name AS 'City', a.street_address AS 'Address', a.zip AS 'Zip code'
+FROM (
+SELECT p.address_id,
+CONCAT(u.first_name, ' ' ,u.last_name) AS 'Host', plt.type_name, prt.type_name AS 'Property_type'
+FROM db.property AS p JOIN db.user as u ON p.owner_id = u.id
+JOIN db.place_type AS plt ON p.place_type_id = plt.id
+JOIN db.property_type AS prt ON p.property_type_id = prt.id
+)
+AS ssv JOIN db.address as a ON ssv.address_id = a.id
+JOIN country AS co ON a.country_id = co.id
+JOIN city AS ci ON a.city_id = ci.id
+ORDER BY ssv.Property_type ASC;
+
+
+

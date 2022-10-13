@@ -1,0 +1,21 @@
+id,country_id,name,code
+1,1,"New Hampshire",NH
+2,1,Maine,ME
+3,1,Pennsylvania,PA
+4,1,Connecticut,CT
+5,1,Oregon,OR
+6,1,Arkansas,AR
+7,1,Alaska,AK
+8,1,"South Dakota",SD
+9,1,Washington,AK
+10,1,"New York",WA
+11,1,California,NY
+12,1,Utah,CA
+13,1,Delaware,UT
+14,1,Florida,NY
+15,1,Tennessee,ME
+16,1,Montana,DE
+17,1,Colorado,FL
+18,1,Minnesota,TN
+19,1,"New Jersey",MT
+20,1,Kansas,CO

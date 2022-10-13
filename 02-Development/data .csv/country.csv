@@ -1,0 +1,41 @@
+id,region_id,name,code
+1,2,Afghanistan,AFG
+2,5,Luxembourg,LUX
+3,8,Canada,CAN
+4,7,Botswana,BWA
+5,5,Guyana,LUX
+6,8,Mongolia,GUY
+7,8,Korea,MNG
+8,2,Kuwait,KOR
+9,4,Tunisia,KWT
+10,8,Jordan,TUN
+11,6,Guatemala,JOR
+12,6,Singapore,GTM
+13,2,Nicaragua,SGP
+14,7,Denmark,NIC
+15,7,Turkey,DNK
+16,1,Cyprus,TUR
+17,5,Iceland,CYP
+18,4,Zambia,ISL
+19,2,Namibia,ISL
+20,2,Japan,ZMB
+21,6,Switzerland,NAM
+22,7,Cuba,JPN
+23,1,Germany,CHE
+24,5,France,DNK
+25,8,Malaysia,CUB
+26,6,Qatar,DEU
+27,6,Spain,FRA
+28,4,Bangladesh,GUY
+29,6,"New Zealand",MYS
+30,5,Australia,QAT
+31,8,Malawi,ESP
+32,3,Poland,AFG
+33,8,Belize,BGD
+34,6,"Saudi Arabia",NZL
+35,6,"United States",AUS
+36,2,Finland,MWI
+37,5,"Czech Republic",POL
+38,2,Albania,BLZ
+39,6,Mexico,SAU
+40,6,Lithuania,POL
